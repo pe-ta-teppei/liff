@@ -147,3 +147,40 @@
     </form>
 </body>
 </html>
+
+   <script>
+       liff.init({ liffId: "YOUR_LIFF_ID" }).then(() => {
+    // LIFF SDK の初期化が完了したら実行されるコード
+    const form = document.getElementById('survey-form');
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault(); // フォームのデフォルトの送信をキャンセル
+
+        const experience = document.getElementById('experience').value;
+        const purpose = document.getElementById('purpose').value;
+        const priority = document.getElementById('priority').value;
+        const part = document.getElementById('part').value;
+        const budget = document.getElementById('budget').value;
+        const region = document.getElementById('region').value;
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+
+        // フォームの入力値を使ってメッセージを送信
+        liff.sendMessages([
+            {
+                type: "text",
+                text: `脱毛アンケート結果\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\nお名前：${name}\nメールアドレス：${email}\n電話番号：${phone}`
+            }
+        ]).then(() => {
+            console.log("メッセージを送信しました");
+            // 送信完了後の処理を追加する場合はここに記述
+        }).catch((error) => {
+            console.error("メッセージの送信に失敗しました", error);
+            // エラー時の処理を追加する場合はここに記述
+        });
+    });
+}).catch((error) => {
+    console.error("LIFF SDK の初期化に失敗しました", error);
+    // 初期化失敗時の処理を追加する場合はここに記述
+});
