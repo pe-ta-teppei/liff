@@ -6,44 +6,34 @@
         body {
             font-family: Arial, sans-serif;
         }
-        
-        form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f5f5f5;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
 
         .form-item {
             margin-bottom: 15px;
         }
 
-        label {
+        .form-item label {
             display: block;
             margin-bottom: 5px;
-            font-weight: bold;
         }
 
-        select {
+        .form-item select {
             width: 100%;
-            padding: 5px;
+            padding: 8px;
+            font-size: 16px;
             border: 1px solid #ccc;
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
-        button[type="submit"] {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
+        .form-item button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            color: #fff;
+            background-color: #007bff;
             border: none;
-            border-radius: 3px;
+            border-radius: 4px;
             cursor: pointer;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #45a049;
         }
     </style>
 </head>
@@ -88,7 +78,7 @@
 
         <div class="form-item">
             <label for="budget">ご予算を教えてください。</label>
-            <select id="budget">
+                            <select id="budget">
                 <option value="〜10,000円">〜10,000円</option>
                 <option value="〜20,000円">〜20,000円</option>
                 <option value="〜30,000円">〜30,000円</option>
@@ -102,7 +92,6 @@
             <select id="region">
                 <option value="北海道">北海道</option>
                 <!-- 他の地域をここに追加 -->
-                <option value="青森県">青森県</option>
                 <option value="青森県">青森県</option>
                 <option value="岩手県">岩手県</option>
                 <option value="宮城県">宮城県</option>
@@ -152,26 +141,9 @@
             </select>
         </div>
 
-        <button type="submit">送信</button>
+        <div class="form-item">
+            <button type="submit">送信</button>
+        </div>
     </form>
-
-    <script>
-        document.getElementById("survey-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-
-            var formData = {
-                experience: document.getElementById("experience").value,
-                purpose: document.getElementById("purpose").value,
-                priority: document.getElementById("priority").value,
-                part: document.getElementById("part").value,
-                budget: document.getElementById("budget").value,
-                region: document.getElementById("region").value
-            };
-
-            console.log(formData);
-
-            // ここでLIFF APIを使用して情報を送信できます。
-        });
-    </script>
 </body>
 </html>
