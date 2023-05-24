@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>脱毛サービスアンケート</title>
+    <style>
+        .form-item {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <form id="survey-form">
+        <div class="form-item">
+            <label for="experience">脱毛の経験はございますか？</label>
+            <select id="experience">
+                <option value="はじめて">はじめて</option>
+                <option value="やったことがある">やったことがある</option>
+            </select>
+        </div>
+
+        <div class="form-item">
+            <label for="purpose">脱毛の目的を教えてください。</label>
+            <select id="purpose">
+                <option value="自己処理の手間を減らしたい">自己処理の手間を減らしたい</option>
+                <option value="肌をきれいにしたい">肌をきれいにしたい</option>
+                <option value="ムダ毛の悩みを解消したい">ムダ毛の悩みを解消したい</option>
+            </select>
+        </div>
+
+        <div class="form-item">
+            <label for="priority">脱毛で重視することはどれでしょうか。</label>
+            <select id="priority">
+                <option value="効果">効果</option>
+                <option value="価格">価格</option>
+                <option value="痛み">痛み</option>
+                <option value="アフターケア">アフターケア</option>
+            </select>
+        </div>
+
+        <div class="form-item">
+            <label for="part">脱毛したい部位について教えてください。</label>
+            <select id="part">
+                <option value="全身脱毛">全身脱毛</option>
+                <option value="背中・うなじ">背中・うなじ</option>
+                <option value="VIO">VIO</option>
+                <option value="その他">その他</option>
+            </select>
+        </div>
+
+        <div class="form-item">
+            <label for="budget">ご予算を教えてください。</label>
+            <select id="budget">
+                <option value="〜10,000円">〜10,000円</option>
+                <option value="〜20,000円">〜20,000円</option>
+                <option value="〜30,000円">〜30,000円</option>
+                <option value="〜50,000円">〜50,000円</option>
+                <option value="プランによる">プランによる</option>
+            </select>
+        </div>
+
+        <div class="form-item">
+            <label for="region">お住まいの地域を教えてください。</label>
+            <select id="region">
+                <option value="北海道">北海道</option>
+                <!-- 他の地域をここに追加 -->
+                <option value="沖縄県">沖縄県</option>
+            </select>
+        </div>
+
+        <button type="submit">送信</button>
+    </form>
+
+    <script>
+        document.getElementById("survey-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var formData = {
+                experience: document.getElementById("experience").value,
+                purpose: document.getElementById("purpose").value,
+                priority: document.getElementById("priority").value,
+                part: document.getElementById("part").value,
+                budget: document.getElementById("budget").value,
+                region: document.getElementById("region").value
+            };
+
+            console.log(formData);
+
+            // ここでLIFF APIを使用して情報を送信できます。
+        });
+    </script>
+</body>
+</html>
+
