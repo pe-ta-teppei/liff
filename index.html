@@ -91,3 +91,47 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>脱毛サービスアンケート</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 mx-auto mt-5">
+                <form id="survey-form">
+                    <div class="form-group">
+                        <label for="experience">脱毛の経験はございますか？</label>
+                        <select class="form-control" id="experience">
+                            <option value="はじめて">はじめて</option>
+                            <option value="やったことがある">やったことがある</option>
+                        </select>
+                    </div>
+                    <!-- 他のフィールドをここに追加 -->
+                    <button type="submit" class="btn btn-primary">送信</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <script>
+        document.getElementById("survey-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var formData = {
+                experience: document.getElementById("experience").value,
+                // 他のフィールドのデータをここに追加
+            };
+
+            console.log(formData);
+
+            // ここでLIFF APIを使用して情報を送信できます。
+        });
+    </script>
+</body>
+</html>
