@@ -214,15 +214,12 @@
         const part = document.getElementById('part').value;
         const budget = document.getElementById('budget').value;
         const region = document.getElementById('region').value;
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const phone = document.getElementById('phone').value;
-
+        
         // フォームの入力値を使ってメッセージを送信
         liff.sendMessages([
             {
                 type: "text",
-                text: `脱毛アンケート結果\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\nお名前：${name}\nメールアドレス：${email}\n電話番号：${phone}`
+                text: `脱毛アンケート結果\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}で診断してください。`
             }
         ]).then(() => {
             console.log("メッセージを送信しました");
