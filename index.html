@@ -258,16 +258,13 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         ]).then(() => {
             console.log("メッセージを送信しました");
-            alert("送信が完了しました。AIが診断するので1分程度お待ちください。");
-            setTimeout(() => { liff.closeWindow(); }, 5000); // 送信後に5秒待ってからLIFFブラウザを閉じる
+            let confirmed = confirm("送信が完了しました。AIが診断するので1分程度お待ちください。");
+            if(confirmed){
+                setTimeout(() => { liff.closeWindow(); }, 5000); // ユーザーがOKを押したら、5秒後にLIFFブラウザを閉じる
+            }
         }).catch((error) => {
             console.error("メッセージの送信に失敗しました", error);
         });
-        });
-
-    }).catch((error) => {
-        console.error("LIFF SDK の初期化に失敗しました", error);
-    });
 });
 </script>
 
