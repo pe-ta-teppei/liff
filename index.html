@@ -223,7 +223,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             ]).then(() => {
                 console.log("メッセージを送信しました");
-                liff.closeWindow();
+                setTimeout(() => { liff.closeWindow(); }, 10); // 送信後に0.01秒待ってからLIFFブラウザを閉じる
             }).catch((error) => {
                 console.error("メッセージの送信に失敗しました", error);
             });
