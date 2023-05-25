@@ -252,17 +252,17 @@ document.addEventListener("DOMContentLoaded", function() {
             const region = document.getElementById('region').value;
             
             liff.sendMessages([
-                {
-                    type: "text",
-                    text: `下記の内容で脱毛診断\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\nで診断結果を教えてください。`
-                }
-            ]).then(() => {
-                console.log("メッセージを送信しました");
-                alert('送信が完了しました。AIが診断するので1分程度お待ちください。');
-                setTimeout(() => { liff.closeWindow(); }, 5000); // 送信後に0.01秒待ってからLIFFブラウザを閉じる
-            }).catch((error) => {
-                console.error("メッセージの送信に失敗しました", error);
-            });
+            {
+                type: "text",
+                text: `下記の内容で脱毛診断\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\nで診断結果を教えてください。`
+            }
+        ]).then(() => {
+            console.log("メッセージを送信しました");
+            alert("送信が完了しました。AIが診断するので1分程度お待ちください。");
+            setTimeout(() => { liff.closeWindow(); }, 5000); // 送信後に5秒待ってからLIFFブラウザを閉じる
+        }).catch((error) => {
+            console.error("メッセージの送信に失敗しました", error);
+        });
         });
 
     }).catch((error) => {
