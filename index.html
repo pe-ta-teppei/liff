@@ -1,43 +1,94 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+
 <head>
-    <title>脱毛サービスアンケート</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>脱毛サロン診断</title>
     <style>
+        /* 全体のスタイル */
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
         }
 
+        /* ヘッダー */
+        header {
+            background-color: #ffccd2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        /* フォーム項目 */
         .form-item {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            padding: 0 20px;
         }
 
-        .form-item label {
+        label {
             display: block;
-            margin-bottom: 5px;
+            font-weight: bold;
+            margin-bottom: 10px;
         }
 
-        .form-item select {
+        select,
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
             width: 100%;
-            padding: 8px;
+            padding: 10px;
             font-size: 16px;
-            border: 1px solid #ccc;
             border-radius: 4px;
+            border: 1px solid #cccccc;
+            background-color: #ffffff;
         }
 
-        .form-item button {
+        /* 送信ボタン */
+        .submit-button {
             display: block;
             width: 100%;
-            padding: 12px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
             font-size: 18px;
-            color: #fff;
-            background-color: #007bff;
+            font-weight: bold;
+            color: #ffffff;
+            background-color: #ff627f;
             border: none;
             border-radius: 4px;
             cursor: pointer;
         }
+
+        /* フッター */
+        footer {
+            background-color: #ffccd2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        p {
+            color: #ffffff;
+            font-size: 14px;
+            margin: 0;
+        }
     </style>
 </head>
+
 <body>
+    <header>
+        <h1>脱毛サロン診断フォーム</h1>
+    </header>
     <form id="survey-form">
         <div class="form-item">
             <label for="experience">脱毛の経験はございますか？</label>
