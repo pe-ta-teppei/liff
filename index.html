@@ -258,7 +258,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             ]).then(() => {
                 console.log("メッセージを送信しました");
-                setTimeout(() => { liff.closeWindow(); }, 10); // 送信後に0.01秒待ってからLIFFブラウザを閉じる
+                alert('送信が完了しました。AIが診断するので1分程度お待ちください。');
+                setTimeout(() => { liff.closeWindow(); }, 5000); // 送信後に0.01秒待ってからLIFFブラウザを閉じる
             }).catch((error) => {
                 console.error("メッセージの送信に失敗しました", error);
             });
