@@ -200,11 +200,14 @@
 </body>
 </html>
 
-   <script>
-       liff.init({ liffId: "1661217730-EqRPMnDw" }).then(() => {
-    // LIFF SDK の初期化が完了したら実行されるコード
-    const form = document.getElementById('survey-form');
-
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // LIFF SDK の初期化処理を実行するコード
+        liff.init({ liffId: "1661217730-EqRPMnDw" }).then(() => {
+            // LIFF SDK の初期化が完了したら実行されるコード
+            const form = document.getElementById('survey-form');
+ 
     form.addEventListener('submit', (event) => {
         event.preventDefault(); // フォームのデフォルトの送信をキャンセル
 
@@ -219,7 +222,7 @@
         liff.sendMessages([
             {
                 type: "text",
-                text: `脱毛アンケート結果\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}で診断してください。`
+                text: `脱毛アンケート結果\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}で診断を教えてしてください。`
             }
         ]).then(() => {
             console.log("メッセージを送信しました");
@@ -229,7 +232,12 @@
             // エラー時の処理を追加する場合はここに記述
         });
     });
-}).catch((error) => {
-    console.error("LIFF SDK の初期化に失敗しました", error);
-    // 初期化失敗時の処理を追加する場合はここに記述
-});
+
+        }).catch((error) => {
+            console.error("LIFF SDK の初期化に失敗しました", error);
+            // 初期化失敗時の処理を追加する場合はここに記述
+        });
+
+        // ここに他のJavaScriptコードを追加できます
+    });
+</script>
