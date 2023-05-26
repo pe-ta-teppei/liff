@@ -237,6 +237,37 @@
 
 <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 <script>
+<!DOCTYPE html>
+<!-- HTML部分は省略 -->
+
+<!-- モーダルダイアログ -->
+<div id="modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background-color:rgba(0,0,0,0.7);z-index:9999;">
+    <div style="width:80%;background-color:white;margin:15% auto;padding:20px;">
+        <p id="modal-message">送信が完了しました。AIが診断するので1分程度お待ちください。</p>
+        <button id="modal-ok">OK</button>
+    </div>
+</div>
+
+<!-- JavaScript部分 -->
+<script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
+<script>
+// カスタムモーダルダイアログの表示関数
+function showModal(message) {
+    return new Promise((resolve) => {
+        const modal = document.getElementById('modal');
+        const modalMessage = document.getElementById('modal-message');
+        const modalOk = document.getElementById('modal-ok');
+
+        modalMessage.textContent = message;
+        modal.style.display = 'block';
+
+        modalOk.addEventListener('click', () => {
+            modal.style.display = 'none';
+            resolve();
+        });
+    });
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     liff.init({ liffId: "1661217730-EqRPMnDw" }).then(() => {
         const form = document.getElementById('survey-form');
@@ -252,19 +283,26 @@ document.addEventListener("DOMContentLoaded", function() {
             const region = document.getElementById('region').value;
             
             liff.sendMessages([
-            {
-                type: "text",
-                text: `下記の内容で脱毛診断\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\nで診断結果を教えてください。`
-            }
-        ]).then(() => {
-            console.log("メッセージを送信しました");
-            let confirmed = confirm("送信が完了しました。AIが診断するので1分程度お待ちください。");
-            if(confirmed){
-                setTimeout(() => { liff.closeWindow(); }, 5000); // ユーザーがOKを押したら、5秒後にLIFFブラウザを閉じる
-            }
-        }).catch((error) => {
-            console.error("メッセージの送信に失敗しました", error);
+                {
+                    type: "text",
+                    text: `下記の内容で脱毛診断\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\nで診断結果を教えてください。`
+                }
+            ]).then(() => {
+                showModal('送信が完了しました。AIが診断するので1分程度お待ちください。')
+                .then(() => {
+                    setTimeout(() => { liff.closeWindow(); }, 5000);
+                });
+            }).catch((error) => {
+                console.error("メッセージの送信に失敗しました", error);
+            });
         });
+
+        console.error("LIFF SDK の初期化に失敗しました", error);
+    });
+});
+</script>
+</body>
+</html>
 });
 </script>
 
