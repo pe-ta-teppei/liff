@@ -75,7 +75,66 @@
             border-radius: 4px;
             cursor: pointer;
         }
+       
+        /* アドバイザー選択 */
+        .advisor-container {
+            display: flex;
+            justify-content: space-between;
+        }
 
+        .advisor-item {
+            display: flex;
+            flex-direction: column; 
+            align-items: center; 
+            margin: 0 3px; 
+            padding: 1em;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            flex: 1; /* 追加 */
+        }
+
+        .advisor-item img {
+            width: 90%;
+            height: auto;
+            border-radius: 10%;
+            margin-bottom: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .advisor-item span {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .advisor-item input[type="radio"] {
+            display: none;
+        }
+
+        .advisor-item label {
+            display: inline-block;
+            padding: 10px 30px;
+            border-radius: 9px;
+            background-color: #cccccc; /* 初期状態のボタン色をグレーに */
+            color: #fff;
+            font-weight: bold;
+            font-size: 9px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* ラジオボタンが選択されたときのボタン色 */
+        .advisor-item input[type="radio"]:checked + label {
+            background-color: #ff627f;
+        }
+
+        .advisor-item label:hover {
+            background-color: #ff3b6b;
+        }
+        
         /* アニメーション */
         @keyframes slideIn {
             from {
@@ -227,6 +286,24 @@
                 <option value="沖縄県">沖縄県</option>
             </select>
         </div>
+        
+                  <div class="form-item">
+    <label for="advisor">美容アドバイザーを選んでください。</label>
+    <div class="advisor-container">
+        <div class="advisor-item">
+            <img src="https://storage.googleapis.com/jupiter-static-prd/images/6522/8298/c6945299-a383-4ffd-9126-c9be9249c31f.jpg" alt="Emiのプロフィール画像">
+            <span>Emi</span>
+            <input type="radio" id="advisor1" name="advisor" value="Emi" checked>
+            <label for="advisor1">選ぶ</label>
+        </div>
+        <div class="advisor-item">
+            <img src="https://storage.googleapis.com/jupiter-static-prd/images/6522/8298/aaf3aa83-3b44-47f5-9284-5aa07cab2921.jpg" alt="Karenのプロフィール画像">
+            <span>Karen</span>
+            <input type="radio" id="advisor2" name="advisor" value="Karen">
+            <label for="advisor2">選ぶ</label>
+        </div>
+    </div>
+</div>
 
         <div class="form-item">
             <button type="submit">送信</button>
@@ -251,10 +328,20 @@ document.addEventListener("DOMContentLoaded", function() {
             const budget = document.getElementById('budget').value;
             const region = document.getElementById('region').value;
             
+                        // advisorの値を取得するための修正
+            let advisor;
+            const advisors = document.getElementsByName('advisor');
+            for (let i = 0; i < advisors.length; i++) {
+                if (advisors[i].checked) {
+                    advisor = advisors[i].value;
+                    break;
+                }
+            }
+            
             liff.sendMessages([
                 {
                     type: "text",
-                    text: `下記の内容で脱毛診断\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\n\nで診断結果を教えてください。`
+                    text: `下記の内容で脱毛診断\n\n脱毛の経験：${experience}\n目的：${purpose}\n重視すること：${priority}\n脱毛したい部位：${part}\nご予算：${budget}\nお住まいの地域：${region}\n美容アドバイザー：${advisor}\n\nで診断結果を教えてください。`
                 }
             ]).then(() => {
                 console.log("メッセージを送信しました");
